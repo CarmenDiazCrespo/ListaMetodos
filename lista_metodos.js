@@ -42,21 +42,21 @@ function get(list, index){
     if(index>MAX_ELEM_LIST){
         throw "Indice fuera de límite";
     }
-    return list[index-1];
+    return list[index-1]; //-1 porque el usuario me pasa 1-5
 }
 function toString(list){
     if (isEmpty(list)){
        throw "La lista esta vacia.";  		
     } 	
-    return list.toString();
+    return list.toString(); //El método toString convierte un array a string y devuelve el resultado.
 }
 function indexOf(list, elem){
     elem = parseInt(elem);
     if(isNaN(elem)){
         throw "The element is not a number";
     }
-    return list.indexOf(elem)+1;
-
+    return list.indexOf(elem)+1; //El método busca en el array el elemento especificado y devuelve su posición.
+    //Si no lo encuentra devuelve un -1
 }
 
 function lastIndexOf(list, elem){
@@ -64,7 +64,8 @@ function lastIndexOf(list, elem){
     if(isNaN(elem)){
         throw "The element is not a number";
     }
-    return list.lastIndexOf(elem)+1;
+    return list.lastIndexOf(elem)+1; //El método lastIndexOf busca en el array el elemento especificado y devuelve su posición.
+    //Si no lo encuentra devuelve un -1
 }
 function capacity(list){
     return MAX_ELEM_LIST;
@@ -75,7 +76,8 @@ function clear(list){
     if (isEmpty(list)){
         throw "The list is empty";
     } 	
-    list.splice(0, list.length);
+    list.splice(0, list.length); //El método splice agrega / elimina elementos a / desde una matriz 
+    //y devuelve los elementos eliminados.
 }
 function firstElement(list){
     var first;
@@ -101,9 +103,7 @@ function remove(list, index){
     if(index>size(list)){
         throw "Indice fuera de límite";
     }
-    var elem = list[index];
-    list.splice(index, 1);
-    return elem; 
+    return list.splice(index, 1);; 
 }
 function removeElement(list, elem){
     var found=false;
@@ -113,15 +113,13 @@ function removeElement(list, elem){
     var i=0;
     while(i<MAX_ELEM_LIST && !found){
         if(list[i]===elem){
-            found=true;
+            found=true; //si lo encuentra se lo pasamos a el método remove
             remove(list,i+1);
         }
         i++;
     }
     return found;
 }
-
-
 function set(list, elem, index){
     var result;
     if(isNaN(elem)){
