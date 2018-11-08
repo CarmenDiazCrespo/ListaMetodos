@@ -107,11 +107,11 @@ function remove(list, index){
 }
 function removeElement(list, elem){
     var found=false;
-    if(index>size(list)){
-        throw "Indice fuera de límite";
+    if(isNaN(elem)){
+        throw "The element is not a number";
     }
     var i=0;
-    while(i<size(list) && !found){
+    while(i<MAX_ELEM_LIST && !found){
         if(list[i]===elem){
             found=true;
             remove(list,i+1);
@@ -131,7 +131,7 @@ function set(list, elem, index){
         throw "Indice fuera de límite";
     }
     result= list[index-1];
-    list[index-1]=elemt;
+    list[index-1]=elem;
     return result;
 }
 function testlist(){
@@ -149,14 +149,13 @@ function testlist(){
     console.log("Capacidad máxima: "+capacity(list));
     console.log(toString(list));
     clear(list);
-    console.log(toString(list));//No tiene que pintar nada
     var list=[2,3,1,5,6]; //Lo relleno a mano para hacer pruebas
-    /*console.log(toString(list));
+    console.log(toString(list));
     console.log("Borro el elemento de la posición 3 que es: "+remove(list,3));
     console.log(toString(list));
     console.log("Borro el elemento 6 de la posición, se ha borrado? "+removeElement(list,6));
     console.log(toString(list));
     console.log("Sustiyo el elemento 2 de la posición 3 que había un: "+set(list,2,3));
-    console.log(toString(list));*/
+    console.log(toString(list));
 } 
 window.onload = testlist;
