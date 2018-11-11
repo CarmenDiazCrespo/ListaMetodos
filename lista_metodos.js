@@ -34,7 +34,7 @@ function addAt(list,elem,index){
     if(index>MAX_ELEM_LIST){
         throw "Indice fuera de límite";
     }
-    list.splice(index,0,elem); //Cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+    list.splice(index-1,0,elem); //Cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
     return size(list);
 }
 function get(list, index){
@@ -82,7 +82,8 @@ function clear(list){
 function firstElement(list){
     var first;
     if (!isEmpty(list)){
-        first = list[0]; 		
+        first= list.shift(); //Devuelve el primer elemento y lo saca.
+        list.unshift(first); //Vuelvo a meter el elmento en el primer lugar.		
     } else {
         throw "The list is empty.";
     }
@@ -92,7 +93,8 @@ function firstElement(list){
 function lastElement(list){
     var last;
     if (!isEmpty(list)){
-        last = list[list.length-1]; 			
+        last=list.pop(); //Extrae el último elemento de la lista y lo devuelve.
+        list.push(last); //Inserta el elemento al final de la lista			
     } else {
         throw "The list is empty.";
     }
@@ -103,7 +105,7 @@ function remove(list, index){
     if(index>size(list)){
         throw "Indice fuera de límite";
     }
-    return list.splice(index, 1);; 
+    return list.splice(index-1, 1);
 }
 function removeElement(list, elem){
     var found=false;
@@ -128,9 +130,7 @@ function set(list, elem, index){
     if(index>size(list)){
         throw "Indice fuera de límite";
     }
-    result= list[index-1];
-    list[index-1]=elem;
-    return result;
+    return list.splice(index-1,1,elem);
 }
 function testlist(){
     var list = create ();
@@ -154,6 +154,10 @@ function testlist(){
     console.log("Borro el elemento 6 de la posición, se ha borrado? "+removeElement(list,6));
     console.log(toString(list));
     console.log("Sustiyo el elemento 2 de la posición 3 que había un: "+set(list,2,3));
+    console.log(toString(list));
+    console.log("El primer elemento es: "+ firstElement(list));
+    console.log(toString(list));
+    console.log("El último elemento es: "+ lastElement(list));
     console.log(toString(list));
 } 
 window.onload = testlist;
